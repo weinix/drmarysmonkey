@@ -4,8 +4,9 @@ size = "7.5,7.5";
 	{
 		node [shape=plaintext, fontsize=16];
 		/* the time-line graph */
-		past -> 1942 -> 1943 -> 1955 -> 1956 -> 1957 -> 1959 ->
-				1960 -> 1961 -> 1962 -> 1963 -> Nov_1963 ->"future";
+		past ->  1955 -> 1956 -> 1957 -> 1959 ->
+				1960 -> 1961 -> 1962 -> 1963 -> Nov_1963 -> 1964 ->
+                "future";
 
 	}
 
@@ -23,6 +24,7 @@ size = "7.5,7.5";
    Baker [shape=ellipse, color = green, label="Judyth Baker", style=filled]
    Oswald [shape=ellipse, color = green, label="Lee Oswald", style=filled]
    Ruby [shape=ellipse, color= green , label="Jack Ruby", style=filled]
+   CIA [shape=ellipse, color= red, label="CIA", style=filled]
 
    /*Relationships*/
    McClelland -> Hilleman [label="works for"]
@@ -30,9 +32,6 @@ size = "7.5,7.5";
    Ruby -> Oswald [dir=both, label="friends"]
    Ruby -> Oswald [label="killed"]
 
-   /*events*/
-   { rank = same; 1942; Ab}
-   Ab [shape=box, label="Antibiotics are released" ]
    /*1955*/
    SalkVacRel [shape=box, label="Salk polio vaccine released" ]
    VacConq [shape=box, label="Many death/Injured"]
@@ -59,41 +58,44 @@ size = "7.5,7.5";
   EddyCrushed [ shape=box, label="Eddy was professionally crushed"]
    Eddy -> EddyCSTalk -> EddyCrushed
 
-  CCTC [shape=box; label="A team created to search for Cancer Cure"]
-  goal [shape=box; label="Create a vaccine to stop cancer"]
+  CCTC [shape=box; label="team for Cancer vaccine"]
+  BigLab [shape=box; label="Big Lab"]
   Ochsner -> CCTC [label="Oversee"]
   Steward -> CCTC [label="Scientific Director"]
   Mary -> CCTC[label="Run Big Lab"]
-   {rank = same; 1960; EddyCSTalk; CCTC; goal}
-  CCTC -> goal
+   {rank = same; 1960; EddyCSTalk; CCTC; BigLab}
+  CCTC ->  BigLab
 
   /* 1961 */
-  RegSVFree[shape=box; label="New regulations to require polio vaccines be SV40-free"]
+  RegSVFree[shape=box; label="Regulation of SV40-free Vaccine"]
   BakerRecruited[shape=box; label="Judyth recruited"]
   Ochsner -> BakerRecruited -> Baker
   {rank = same; 1961 ; RegSVFree}
+ VacConq -> RegSVFree
 
 
   /* 1962 */
  OralPolioVac[shape=box; label="Sabin oral Polio vaccine"]
- CIAPayAcc [Shape=box; label="Nixon ask CIA pay for lab equipment"]
-  {rank = same; 1962 ; OralPolioVac; CIAPayAcc}
+  {rank = same; 1962 ; OralPolioVac }
+  Sabin -> OralPolioVac
+   BigLab -> CIA [label="funded by"]
+   RegSVFree -> OralPolioVac
 
   /* 1963 */
+  cancervacusedup[shape=box label="SV40 contaminated vac used till this year "]
   BioWeaponTeam[shape=box; label="Bio Weapon Team created"]
-  BWTGoal[shape=box; label="Inject Cancer Carlos to avoid WWIII"]
   LittleLab[shape=box; label="Little Lab"]
   JacksonTest[shape=box; label="Virus test in presoner at Jackson"]
   JudyProtest[shape=box; label="Juydth write to Ochsner"]
   Judyfired[shape=box; label="Ochsner fired Juydth"]
   Oswaldfired[shape=box; label="Ochsner ordered Oswald to Dallas"]
+  OralPolioVac -> cancervacusedup
+  {rank = same; 1963 ; cancervacusedup;BioWeaponTeam; LittleLab;  JacksonTest; JudyProtest; Judyfired;}
 
-
-  {rank = same; 1963 ; BioWeaponTeam; LittleLab; BWTGoal; JacksonTest; JudyProtest; Judyfired; Oswald}
   Baker -> BioWeaponTeam
   Oswald -> BioWeaponTeam
   David -> BioWeaponTeam
-  Mary -> BioWeaponTeam -> BWTGoal -> JacksonTest -> JudyProtest -> Judyfired ->Oswaldfired
+  Mary -> BioWeaponTeam -> JacksonTest -> JudyProtest -> Judyfired ->Oswaldfired
   David -> LittleLab [label="Runs"]
   Baker -> LittleLab [label="Works in"]
   Ruby -> LittleLab [label= "works in"]
@@ -109,7 +111,7 @@ size = "7.5,7.5";
     Hilleman -> NameSV40
 
     Castro -> CubaRev -> NOThreatned
-    Castro -> CubanMissileCrisis -> NOThreatned
+    Castro -> CubanMissileCrisis -> NOThreatned -> "Kill Castro or JFK who is soft to Cuba" -> BioWeaponTeam
    /* Nov 1963 */
    JFKKilled[shape=box; label="JFK Killed"]
    OswaldKilled[shape=box; label="Oswald Killed by Ruby"]
@@ -118,4 +120,10 @@ size = "7.5,7.5";
   {rank = same; Nov_1963 ; JFKKilled; OswaldKilled; RubyKilled}
   Oswald -> JFKKilled [label="shoot"]
   Ruby -> OswaldKilled [label = "killed"]
+  /* 1964 */
+  MaryKilled[shape=box; label="Mary brutally murdered"]
+  Testimony[shape=box; label="Warren Commission started taking testimonies in New Orleans"]
+  {rank = same; 1964 ; MaryKilled; Testimony}
+  MaryKilled -> Testimony [label="few hours after"]
+  Mary -> MaryKilled
 }
