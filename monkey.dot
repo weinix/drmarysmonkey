@@ -89,8 +89,10 @@ size = "7.5,7.5";
   JudyProtest[shape=box; label="Juydth write to Ochsner"]
   Judyfired[shape=box; label="Ochsner fired Juydth"]
   Oswaldfired[shape=box; label="Ochsner ordered Oswald to Dallas"]
-  OralPolioVac -> cancervacusedup
+  OralPolioVac -> cancervacusedup -> "Cancer epidemic"
+  NORes[shape=box; label="Kill Castro or JFK who is soft to Cuba"]
   {rank = same; 1963 ; cancervacusedup;BioWeaponTeam; LittleLab;  JacksonTest; JudyProtest; Judyfired;}
+  {rank = same; future; "Cancer epidemic"}
 
   Baker -> BioWeaponTeam
   Oswald -> BioWeaponTeam
@@ -109,13 +111,16 @@ size = "7.5,7.5";
     Eddy -> DisPolyoma -> NameSV40
     McClelland -> DisPolyoma
     Hilleman -> NameSV40
-
+    NameSV40 -> "45% of seminal fluid and 23% of blood samples" [label="found in"]
     Castro -> CubaRev -> NOThreatned
-    Castro -> CubanMissileCrisis -> NOThreatned -> "Kill Castro or JFK who is soft to Cuba" -> BioWeaponTeam
+    Castro -> CubanMissileCrisis ->
+    NOThreatned -> NORes[label="motivats"]
+    NORes -> BioWeaponTeam
    /* Nov 1963 */
-   JFKKilled[shape=box; label="JFK Killed"]
-   OswaldKilled[shape=box; label="Oswald Killed by Ruby"]
-   RubyKilled[shape=box; label="Ruby died in cancer in 29 days"]
+   JFKKilled[shape=box; label="JFK Killed in Dallas"; color=red; style=filled]
+   OswaldKilled[shape=box; label="Oswald Killed"]
+   RubyKilled[shape=box; label="Ruby died by cancer virus + X-Ray"]
+   Oswaldfired -> JFKKilled -> OswaldKilled -> RubyKilled
 
   {rank = same; Nov_1963 ; JFKKilled; OswaldKilled; RubyKilled}
   Oswald -> JFKKilled [label="shoot"]
